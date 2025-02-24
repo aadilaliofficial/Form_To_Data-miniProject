@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Display</title>
+    <style>
+        *{
+            margin: 0;;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(12, 12, 57);
+            align-items: center;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 90%;
+            max-width: 400px;
+            background: rgb(68, 68, 227);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgb(243, 241, 241);
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid pink;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: rgb(2, 2, 47);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.7s;
+        }
+
+        button:hover {
+            background-color: white;
+            color: blue;
+        }
+
+        .data-container {
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+            z-index: 1;
+        }
+
+        .data-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 2px 5px black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="dataForm">
+        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="email" id="email" placeholder="Enter Email" required>
+        <input type="tel" id="contact" placeholder="Enter Contact" required>
+        <button type="submit">Add Data</button>
+    </form>
+    <div class="data-container" id="dataList"></div>
+
+    <script>
+        const colors = ["#e74c3c", "#2ecc71", "#3498db", "#9b59b6", "#f39c12", "#d35400"];
+        document.getElementById("dataForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let contact = document.getElementById("contact").value;
+            let date = new Date().toLocaleString();
+
+            let dataItem = document.createElement("div");
+            dataItem.classList.add("data-item");
+            dataItem.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            dataItem.innerHTML = `<strong>Name:</strong> ${name} <br> <strong>Email:</strong> ${email} <br> <strong>Contact:</strong> ${contact} <br> <strong>Date:</strong> ${date}`;
+
+            document.getElementById("dataList").appendChild(dataItem);
+
+            document.getElementById("dataForm").reset();
+        });
+    </script>
+
+</body>
+
+</html>
